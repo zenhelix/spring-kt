@@ -19,6 +19,9 @@ configure(subprojects.filter { it.childProjects.isEmpty() }) {
         repositories {
             mavenLocal()
             mavenCentralPortal {
+                uploader {
+                    maxRetriesStatusCheck = 10
+                }
                 credentials {
                     username = System.getProperty("MAVEN_SONATYPE_USERNAME") ?: System.getenv("MAVEN_SONATYPE_USERNAME")
                     password = System.getProperty("MAVEN_SONATYPE_TOKEN") ?: System.getenv("MAVEN_SONATYPE_TOKEN")
