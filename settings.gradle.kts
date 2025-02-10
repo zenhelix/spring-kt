@@ -14,8 +14,6 @@ project("common") {
         include("ext-validation-api")
     }
     project("web") {
-        include("web-support")
-
         include("apache-http-client-support")
         include("jdk-http-client-support")
         include("jetty-http-client-support")
