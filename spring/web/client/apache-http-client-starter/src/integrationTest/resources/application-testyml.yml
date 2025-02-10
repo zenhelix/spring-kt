@@ -1,0 +1,4 @@
+test.client.yml:
+  http:
+    request:
+      protocol-upgrade-enabled: false
