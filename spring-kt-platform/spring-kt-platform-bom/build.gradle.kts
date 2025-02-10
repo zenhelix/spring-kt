@@ -2,6 +2,10 @@ plugins { `java-platform` }
 
 val javaPlatformComponentName: String = "javaPlatform"
 
+javaPlatform {
+    allowDependencies()
+}
+
 publishing {
     publications {
         create<MavenPublication>(project.name) {
