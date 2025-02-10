@@ -19,18 +19,22 @@ catalog {
         }
 
         rootProject.subprojects
-            .filter { it.name.contains("spring-kt-platform-").not() }
-            .filter { it.name != project.name }
+            .filter {
+                it.name.contains("spring-kt-platform-").not()
+                        && it.name != project.name
+            }
             .forEach { project ->
-                project.extensions.findByType<PublishingExtension>()?.publications?.forEach {
-                    if (it is MavenPublication) {
+                project.publishing.publications
+                    .filterIsInstance<MavenPublication>()
+                    .forEach {
                         library(it.artifactId, it.groupId, it.artifactId).apply {
                             if (currentVersion != Project.DEFAULT_VERSION) {
                                 version { strictly(currentVersion) }
+                            } else {
+                                withoutVersion()
                             }
                         }
                     }
-                }
             }
 
     }
